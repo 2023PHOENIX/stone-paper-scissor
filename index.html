@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles.css">
+    <title> My Game</title>
+</head>
+<body>
+
+
+<div class="scoreboard">
+    <div class="score-text">
+        ROCK PAPER SCISSORS
+    </div>
+    <div class="board">
+
+        <div class="score">
+            <p> Computer  Score</p>
+            <span>0</span>
+        </div>
+        <div class="score">
+            <p> Your Score</p>
+             <span>0</span>
+
+        </div>
+    </div>
+
+
+</div>
+<div class="main">
+    <div class="first-game-button">
+
+    <div class="game-button rock" id="rock">
+        <img width="100" height="100" src="https://img.icons8.com/ios-filled/50/angry-fist.png" alt="angry-fist"/>
+    </div>
+    <div class="game-button paper" id="paper">
+        <img width="100" height="100" src="https://img.icons8.com/glyph-neue/64/hand.png" alt="hand"/>
+    </div>
+
+    </div>
+
+    <div class="game-button scissor" id="scissor">
+        <img width="100" height="100" src="https://img.icons8.com/ios-filled/50/two-fingers.png" alt="two-fingers"/>
+    </div>
+
+       <svg class="line" id="line1"></svg>
+<svg class="line" id="line2"></svg><svg class="line" id="line3"></svg>
+</div>
+
+
+<div class="game-rules">
+
+ <span class="close-button">X</span>
+    <h1>Game Rules  </h1>
+    <ul>
+        <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+        <li>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</li>
+        <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</li>
+        <li>If both players lay down the same hand, each player lays down another hand</li>
+    </ul>
+</div>
+<footer>
+    <button class="rules">RULES</button>
+    <button class="next">NEXT</button>
+
+</footer>
+<script src="./main.js"></script>
+</body>
+</html>
