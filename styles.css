@@ -64,6 +64,7 @@ body {
 }
 
 .main {
+
     /*background-color: white;*/
     /*margin-top : 2rem;*/
     display: flex;
@@ -135,9 +136,10 @@ button {
 
 
 .game-rules {
+    display: none;
     position: fixed;
     right: 32px;
-    bottom : 6rem;
+    bottom: 6rem;
     width: 15%;
     flex-shrink: 0;
     border-radius: 13px;
@@ -160,12 +162,39 @@ button {
     padding-bottom: 0.5rem;
 }
 
-.close-button{
+#choice-section {
+    display: flex;
+}
+
+#match-section {
+    display: none;
+    flex-direction: row;
+    gap : 100px;
+}
+.game-result{
+    font-size: 2rem;
+    color : white;
+    padding-top: 2rem;
+    margin-top : 1rem;
+}
+.game-result span{
+    font-size: 3rem;
+
+}
+.game-result button{
+    background-color: white;
+    color: #6B6B6B;
+    font-size: 1rem;
+}
+.human-pick{
+}
+
+.close-button {
     position: absolute;
-    right : -0.9rem;
-    top : -1.2rem;
-    padding : 0.4rem;
-    z-index : 300;
+    right: -0.9rem;
+    top: -1.2rem;
+    padding: 0.4rem;
+    z-index: 300;
     height: 2rem;
     width: 2rem;
     text-align: center;
