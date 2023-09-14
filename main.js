@@ -9,6 +9,13 @@ const mappedNumber = {
     "paper": 1,
     "scissor": 2,
 }
+const data = {
+    "0": {"name": "rock", "image": "https://img.icons8.com/ios-filled/50/angry-fist.png"},
+    "1": {"name": "paper", "image": "https://img.icons8.com/glyph-neue/64/hand.png"},
+    "2": {"name": "scissor", "image": "https://img.icons8.com/ios-filled/50/two-fingers.png"},
+
+
+}
 
 function createLine(c1, c2, Line) {
     const node1 = document.getElementById(c1);
@@ -47,6 +54,7 @@ function RuleBox() {
 }
 
 function backToChoice() {
+    location.reload();
     document.querySelector('#match-section').style.display = 'none';
     document.querySelector('#choice-section').style.display = 'flex';
 }
@@ -59,23 +67,45 @@ function nextToMatchSection() {
 function getTheMatchResult(humanChoiceString) {
     nextToMatchSection();
 
-    const computerChoice = Math.floor(Math.random() * 3);
-    const humanChoice = mappedNumber[humanChoiceString];
 
-    console.log(humanChoice, computerChoice);
 
-    let winner = "";
+    try {
+        const computerChoice = Math.floor(Math.random() * 3);
+        const humanChoice = mappedNumber[humanChoiceString];
 
-    if ((humanChoice === 2 && computerChoice === 0) || (computerChoice === 2 && humanChoice === 0)) {
-        winner = humanChoice === computerChoice ? "draw" : humanChoice > computerChoice ? "computer" : "human";
-    } else {
-        winner = humanChoice === computerChoice ? "draw" : humanChoice > computerChoice ? "human" : "computer";
+        const humanPickURL = data[humanChoice].image;
+        const computerChoiceURL = data[computerChoice].image;
+
+
+
+        document.querySelector("#humanChoiceURL").src = humanPickURL;
+        document.querySelector("#computerChoiceURL").src = computerChoiceURL;
+        console.log(humanChoice, computerChoice);
+
+        document.querySelector("#human-choice").classList.add(data[humanChoice].name);
+        document.querySelector("#computer-choice").classList.add(data[computerChoice].name);
+
+
+        let winner = "";
+
+        if ((humanChoice === 2 && computerChoice === 0) || (computerChoice === 2 && humanChoice === 0)) {
+            winner = humanChoice === computerChoice ? "draw" : humanChoice > computerChoice ? "computer" : "human";
+        } else {
+            winner = humanChoice === computerChoice ? "draw" : humanChoice > computerChoice ? "human" : "computer";
+        }
+
+
+        if (winner === "draw") {
+            document.querySelector(".game-result").innerHTML = `<span>TIE UP</span><br><button id="play-again">REPLAY</button>`
+            document.querySelector('#play-again').addEventListener('click', () => {
+                backToChoice();
+            })
+        } else {
+            document.querySelector('.match-result-text').innerText = (winner === "human" ? "WON" : "LOST")
+        }
+    } catch (e) {
+        console.log("error");
     }
-
-
-
-    console.log(winner);
-
 }
 
 createLine('rock', 'paper', 'line1');
@@ -83,10 +113,6 @@ createLine('paper', 'scissor', 'line2')
 createLine('rock', 'scissor', 'line3')
 
 RuleBox();
-
-document.querySelector('#play-again').addEventListener('click', () => {
-    backToChoice();
-})
 
 
 const rockButton = document.querySelector('#rock');
@@ -103,6 +129,9 @@ scissorButton.addEventListener('click', () => {
 })
 
 
+document.querySelector('#play-again').addEventListener('click', () => {
+    backToChoice();
+})
 
 
 
