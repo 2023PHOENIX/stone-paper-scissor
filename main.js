@@ -1,5 +1,8 @@
 // Get references to the nodes and the line
 
+
+// TODO: 1. Fix the winner rings of different color.
+
 window.addEventListener('resize', function () {
     "use strict";
     window.location.reload();
@@ -15,6 +18,11 @@ const data = {
     "2": {"name": "scissor", "image": "https://img.icons8.com/ios-filled/50/two-fingers.png"},
 
 
+}
+
+function updateTheScoreBoard() {
+    document.querySelector('#human-score').innerText = localStorage.getItem('human');
+    document.querySelector('#computer-score').innerText = localStorage.getItem('computer');
 }
 
 function createLine(c1, c2, Line) {
@@ -55,6 +63,7 @@ function RuleBox() {
 
 function backToChoice() {
     location.reload();
+
     document.querySelector('#match-section').style.display = 'none';
     document.querySelector('#choice-section').style.display = 'flex';
 }
@@ -66,9 +75,7 @@ function nextToMatchSection() {
 
 function getTheMatchResult(humanChoiceString) {
     nextToMatchSection();
-
-
-
+    document.querySelector('.next').style.display = 'block';
     try {
         const computerChoice = Math.floor(Math.random() * 3);
         const humanChoice = mappedNumber[humanChoiceString];
@@ -77,10 +84,9 @@ function getTheMatchResult(humanChoiceString) {
         const computerChoiceURL = data[computerChoice].image;
 
 
-
         document.querySelector("#humanChoiceURL").src = humanPickURL;
         document.querySelector("#computerChoiceURL").src = computerChoiceURL;
-        console.log(humanChoice, computerChoice);
+        // console.log(humanChoice, computerChoice);
 
         document.querySelector("#human-choice").classList.add(data[humanChoice].name);
         document.querySelector("#computer-choice").classList.add(data[computerChoice].name);
@@ -94,15 +100,36 @@ function getTheMatchResult(humanChoiceString) {
             winner = humanChoice === computerChoice ? "draw" : humanChoice > computerChoice ? "human" : "computer";
         }
 
-
+        let prevHumanScore = Number(localStorage.getItem('human'));
+        let prevComputerScore = Number(localStorage.getItem('computer'));
         if (winner === "draw") {
+
             document.querySelector(".game-result").innerHTML = `<span>TIE UP</span><br><button id="play-again">REPLAY</button>`
             document.querySelector('#play-again').addEventListener('click', () => {
                 backToChoice();
             })
+
+            localStorage.setItem('human', Number(prevHumanScore + 1));
+            localStorage.setItem('computer', Number(prevComputerScore + 1));
+
+            document.querySelector('#human-score').innerText = localStorage.getItem('human');
+            document.querySelector('#computer-score').innerText = localStorage.getItem('computer');
+
+
         } else {
             document.querySelector('.match-result-text').innerText = (winner === "human" ? "WON" : "LOST")
+            if (winner === 'human') {
+                localStorage.setItem('human', Number(prevHumanScore + 1));
+                document.querySelector('#human-score').innerText = localStorage.getItem('human');
+
+
+            } else {
+                localStorage.setItem('computer', Number(prevComputerScore + 1));
+                document.querySelector('#computer-score').innerText = localStorage.getItem('computer');
+            }
         }
+
+
     } catch (e) {
         console.log("error");
     }
@@ -112,6 +139,7 @@ createLine('rock', 'paper', 'line1');
 createLine('paper', 'scissor', 'line2')
 createLine('rock', 'scissor', 'line3')
 
+updateTheScoreBoard();
 RuleBox();
 
 
