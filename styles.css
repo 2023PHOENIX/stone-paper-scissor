@@ -14,21 +14,25 @@ body {
 .scoreboard {
     display: flex;
     justify-content: space-between;
+    gap: 10rem;
     /*align-items: center;*/
-    height: 25%;
-    width: 50%;
-    font-size: 1rem;
+    height: 15%;
+    width: 60%;
     margin: auto;
     margin-top: 1rem;
-    margin-bottom: 5rem;
-    border: 0.2rem solid white;
+    margin-bottom: 2rem;
+    padding: 1rem 1rem;
+    border: 2px solid white;
     border-radius: 1rem;
 }
 
 .score-text {
+    display: flex;
+    flex-direction: column;
     width: 30%;
-    font-size: 3rem;
-    padding: 1rem;
+    font-size: 2rem;
+    justify-content: center;
+
     color: white;
     /*background-color: blue;*/
 }
@@ -37,24 +41,27 @@ body {
     display: flex;
     width: 50%;
 
-    align-items: center;
+    justify-content: flex-end;
 }
 
 .score {
     background-color: white;
     height: 80%;
-    width: 50%;
-    margin-right: 2rem;
+    width: 30%;
+    margin-right: 1rem;
     padding-top: 0.5rem;
     border-radius: 0.5rem;
-    font-size: 1.6rem;
+
     text-align: center;
+    padding: 1rem 0.5rem;
 }
 
 .score p {
+    font-size: 1.5rem;
     padding: 0 1rem;
-    color: #8c8c8c;
 
+    font-weight: 600;
+    color: #656565;
 }
 
 .score span {
@@ -78,10 +85,10 @@ body {
 .first-game-button {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    margin-top: 2rem;
-
+    margin-top: 1rem;
+    gap: 10rem;
 }
 
 .game-button {
@@ -92,6 +99,10 @@ body {
     /*height: 140px;*/
     position: relative;
     border-radius: 50%;
+}
+
+.game-button svg:hover {
+    transform: scale(1.1);
 }
 
 .game-button img {
@@ -121,7 +132,7 @@ footer {
 
 .scissor {
     border: 20px solid #FFA943;
-    margin-top: 2rem;
+
 }
 
 .special-button {
@@ -138,9 +149,17 @@ footer {
     border-radius: 0.5rem;
     border: none;
     background: #FFF;
-    color: #6B6B6B;
-    padding: 1rem;
-    margin: 2rem;
+    color: #6b6b6b;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    margin: 1rem;
+}
+
+#play-again:hover {
+    background-color: #8CC461;
+    border: 2px solid white;
+    color: white;
+
 }
 
 .line {
@@ -243,4 +262,86 @@ footer {
     padding: 1rem;
     background-color: green;
     border-radius: 50%;
+}
+
+
+/*================= CSS of winner page ================= */
+.main-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-top: 8rem;
+}
+
+.winning-div {
+    font-size: 2.7rem;
+    font-family: Roboto;
+    color: white;
+
+}
+
+.hurray {
+
+
+    font-size: 6rem;
+
+}
+
+#trophy-icon {
+    position: relative;
+    /*text-align: center;*/
+}
+
+#star5 {
+    position: absolute;
+    top: 80%;
+    left: 40%;
+}
+
+#star1 {
+    position: absolute;
+    left: 35%;
+    top: 20%;
+}
+
+#star6 {
+    position: absolute;
+    right: 35%;
+    top: 50%;
+}
+
+#star7 {
+    position: absolute;
+    right: 37%;
+}
+
+#star2 {
+    position: absolute;
+    left: 55%;
+    top: -49%;
+}
+
+
+#star4 {
+    position: absolute;
+    left: 48%;
+    top: -25%;
+}
+
+#star3 {
+    position: absolute;
+    left: 43%;
+    top: -25%;
+}
+
+#star9 {
+    position: absolute;
+    left: 40%;
+    top: -9%;
+}
+
+#star1 {
+    position: absolute;
 }

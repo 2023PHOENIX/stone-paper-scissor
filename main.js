@@ -20,9 +20,16 @@ const data = {
 
 }
 
+
+// let c1 = `<div style="background-color: #66B248; padding : 1rem; border-radius: 50%"></div>`;
+// let c2 = `<div style="background-color: #32A62F; padding : 1rem; border-radius: 50%"></div>`;
+// let c3 = `<div style="background-color: #299A26; padding : 2rem; border-radius: 50%"></div>`;
+
 function updateTheScoreBoard() {
-    document.querySelector('#human-score').innerText = localStorage.getItem('human');
-    document.querySelector('#computer-score').innerText = localStorage.getItem('computer');
+    document.querySelector('#human-score').innerText = localStorage.getItem('human') || 0;
+    document.querySelector('#computer-score').innerText = localStorage.getItem('computer') || 0;
+
+
 }
 
 function createLine(c1, c2, Line) {
@@ -73,9 +80,34 @@ function nextToMatchSection() {
     document.querySelector('#match-section').style.display = 'flex';
 }
 
+function winnerRingsFormation(winnerDiv) {
+    const computerDiv = document.querySelector(`#${winnerDiv}`);
+    const parentElement = document.querySelector(`#${winnerDiv}`).parentElement;
+    document.querySelector(`#${winnerDiv}`).remove();
+
+    let c3 = document.createElement('div');
+    let c2 = document.createElement('div');
+    let c1 = document.createElement('div');
+    c3.style.backgroundColor = "#299A26";
+    c3.style.padding = "2rem";
+    c3.style.borderRadius = "50%";
+    c2.style.backgroundColor = "#32A62F";
+    c2.style.padding = "1.8rem";
+    c2.style.borderRadius = "50%";
+    c1.style.backgroundColor = "#66B248";
+    c1.style.padding = "1.4rem";
+    c1.style.borderRadius = "50%";
+
+
+    c3.append(computerDiv);
+    c2.append(c3);
+    c1.append(c2);
+    parentElement.appendChild(c1);
+}
+
 function getTheMatchResult(humanChoiceString) {
     nextToMatchSection();
-    document.querySelector('.next').style.display = 'block';
+
     try {
         const computerChoice = Math.floor(Math.random() * 3);
         const humanChoice = mappedNumber[humanChoiceString];
@@ -121,17 +153,19 @@ function getTheMatchResult(humanChoiceString) {
             if (winner === 'human') {
                 localStorage.setItem('human', Number(prevHumanScore + 1));
                 document.querySelector('#human-score').innerText = localStorage.getItem('human');
-
-
+                document.querySelector('.next').style.display = 'block';
+                winnerRingsFormation('human-choice');
             } else {
                 localStorage.setItem('computer', Number(prevComputerScore + 1));
                 document.querySelector('#computer-score').innerText = localStorage.getItem('computer');
+                winnerRingsFormation('computer-choice');
+
             }
         }
 
 
     } catch (e) {
-        console.log("error");
+        console.log("error", e);
     }
 }
 
@@ -148,13 +182,13 @@ const paperButton = document.querySelector('#paper');
 const scissorButton = document.querySelector('#scissor');
 rockButton.addEventListener('click', () => {
     getTheMatchResult('rock');
-})
+});
 paperButton.addEventListener('click', () => {
     getTheMatchResult('paper');
-})
+});
 scissorButton.addEventListener('click', () => {
     getTheMatchResult('scissor');
-})
+});
 
 
 document.querySelector('#play-again').addEventListener('click', () => {
